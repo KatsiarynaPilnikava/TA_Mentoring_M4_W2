@@ -1,10 +1,13 @@
 package com.epam.tat.selenium.page;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 public class BasePage {
@@ -30,8 +33,9 @@ public class BasePage {
         PageFactory.initElements(this.driver, this);
     }
 
-    public void composeNewMail() {
+    public ComposeMailPage composeNewMail() {
         newMailButton.click();
+        return new ComposeMailPage(driver);
     }
 
     public DraftsPage goToDraft() {
@@ -49,10 +53,14 @@ public class BasePage {
         logoutButton.click();
     }
 
-    public void checkLogin() {
-        Assert.assertNotNull(logoutButton, "Login insuccessful");
+    public boolean checkLogin() {
+    	 return logoutButton.isDisplayed();
     }
     public void clearField(WebElement element){
     	element.sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.DELETE);
     }
+    public void waitForPage(){
+    	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    }
+   
 }

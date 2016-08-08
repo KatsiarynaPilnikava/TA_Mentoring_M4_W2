@@ -35,7 +35,7 @@ public class BasicTest {
 			driver = new OperaDriver();
 		} else if (browser.equals("google_chrome")) {
 			System.setProperty("webdriver.chrome.driver",
-					"C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe");
+					"D:\\soft\\Drivers\\chromedriver.exe");
 			driver = new ChromeDriver();
 		} else if (browser.equals("mozilla")) {
 			driver = new FirefoxDriver();

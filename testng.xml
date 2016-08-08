@@ -3,7 +3,7 @@
 
 <suite name="Selenium tests suite">
     <test name="E-Mail testing">
-        <parameter name="browser" value="mozilla"/>
+        <parameter name="browser" value="google_chrome"/>
         <parameter name="url" value="https://mail.ru/"/>
         <classes>
             <class name="com.epam.tat.selenium.tests.MailTest"/>
