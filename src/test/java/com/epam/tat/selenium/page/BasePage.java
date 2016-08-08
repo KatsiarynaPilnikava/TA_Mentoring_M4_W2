@@ -7,8 +7,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 
 public class BasePage {
     private static final String NEW_MAIL_XPATH = "//span[@class=\"b-toolbar__btn__text b-toolbar__btn__text_pad\"]";
@@ -60,7 +58,7 @@ public class BasePage {
     	element.sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.DELETE);
     }
     public void waitForPage(){
-    	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    	driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
     }
    
 }

@@ -3,7 +3,6 @@ package com.epam.tat.selenium.tests;
 
 import com.epam.tat.selenium.page.*;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

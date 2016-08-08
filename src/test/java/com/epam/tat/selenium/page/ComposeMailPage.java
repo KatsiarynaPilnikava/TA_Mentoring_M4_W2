@@ -2,7 +2,6 @@ package com.epam.tat.selenium.page;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 public class ComposeMailPage extends BasePage {
     private static final String MAIL_SENDTO_XPATH = "//textarea[@class=\"js-input compose__labels__input\"]";
@@ -10,6 +9,7 @@ public class ComposeMailPage extends BasePage {
     private static final String SAVE_AS_DRAFT_XPATH = "//div[@data-name=\"saveDraft\"]";
     private static final String MAIL_SENDTO_CHECK_XPATH = "//span[contains(.,'%s')]";
     private static final String MAIL_TEXT_CHECK_XPATH = "//body[@id='tinymce']//div[contains(.,'%s')]";
+    
     private static final String BODY = "//body";
     @FindBy(xpath = BODY)
     private WebElement page;
