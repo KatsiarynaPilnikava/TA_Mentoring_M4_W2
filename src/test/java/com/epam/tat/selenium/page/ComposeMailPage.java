@@ -8,7 +8,7 @@ public class ComposeMailPage extends BasePage {
     private static final String MAIL_SUBJECT_XPATH = "//input[@name=\"Subject\"]";
     private static final String SAVE_AS_DRAFT_XPATH = "//div[@data-name=\"saveDraft\"]";
     private static final String MAIL_SENDTO_CHECK_XPATH = "//span[contains(.,'%s')]";
-    private static final String MAIL_TEXT_CHECK_XPATH = "//body[@id='tinymce']//div[contains(.,'%s')]";
+    private static final String MAIL_TEXT_CHECK_XPATH = "//div[contains(.,'%s')]";
     
     private static final String BODY = "//body";
     @FindBy(xpath = BODY)
@@ -37,7 +37,8 @@ public class ComposeMailPage extends BasePage {
     }
 
     public void saveAsDraft() {
-        saveAsDraftButton.click();
+        super.mouseClick(saveAsDraftButton);
+        
     }
 
     public boolean checkMailContent(String sendTo, String subject, String text) {

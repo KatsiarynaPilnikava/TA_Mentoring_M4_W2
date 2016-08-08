@@ -2,9 +2,11 @@ package com.epam.tat.selenium.page;
 
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -59,6 +61,10 @@ public class BasePage {
     }
     public void waitForPage(){
     	driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+    }
+    public void mouseClick(WebElement element){
+    	Actions action = new Actions(driver);
+    	action.moveToElement(element).click();
     }
    
 }
