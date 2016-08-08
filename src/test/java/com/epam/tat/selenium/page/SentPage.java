@@ -3,9 +3,7 @@ package com.epam.tat.selenium.page;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 
-/**
- * Created by Lenovo on 28.07.2016.
- */
+
 public class SentPage extends BasePage {
     private static final String MAIL_TITLE_XPATH = "//a[@title=\"";
     private static final String BODY = "//body";
@@ -16,7 +14,6 @@ public class SentPage extends BasePage {
 
     public SentPage(WebDriver driver) {
         super(driver);
-        this.driver = driver;
     }
 
     public boolean checkIfMailSaved(String mailTo) {

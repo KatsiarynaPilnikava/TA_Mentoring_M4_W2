@@ -4,12 +4,13 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
 public class BasePage {
     private static final String NEW_MAIL_XPATH = "//span[@class=\"b-toolbar__btn__text b-toolbar__btn__text_pad\"]";
-    private static final String DRAFTS_XPATH = "//a[@href=\"/messages/drafts/\"]";
-    private static final String SENT_XPATH = "//a[@href=\"/messages/sent/\"]";
+    private static final String DRAFTS_XPATH = "//a[@href=\'/messages/drafts/\']";
+    private static final String SENT_XPATH = "//a[@href=\'/messages/sent/\']";
     private static final String LOGOUT_LINK_ID = "PH_logoutLink";
     private static final String BODY = "//body";
     @FindBy(xpath = BODY)
@@ -22,22 +23,26 @@ public class BasePage {
     private WebElement sentButton;
     @FindBy(id = LOGOUT_LINK_ID)
     private WebElement logoutButton;
-    private WebDriver driver;
+    protected WebDriver driver;
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
+        PageFactory.initElements(this.driver, this);
     }
 
     public void composeNewMail() {
         newMailButton.click();
     }
 
-    public void goToDraft() {
+    public DraftsPage goToDraft() {
         draftButton.click();
+		return new DraftsPage(driver);
+        
     }
 
-    public void goToSent() {
+    public SentPage goToSent() {
         sentButton.click();
+		return new SentPage(driver);
     }
 
     public void logout() {

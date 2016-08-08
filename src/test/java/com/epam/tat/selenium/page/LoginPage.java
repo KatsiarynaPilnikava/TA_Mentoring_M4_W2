@@ -18,18 +18,17 @@ public class LoginPage extends BasePage{
     @FindBy(id = LOGIN_BUTTON_ID)
     private WebElement loginButton;
 
-    private WebDriver driver;
 
     public LoginPage(WebDriver driver) {
     	 super(driver);
-         this.driver = driver;
     }
 
-    public void loginAs(User user) {
+    public BasePage loginAs(User user) {
         super.clearField(inputUser);
         inputUser.sendKeys(user.getUsername());
         super.clearField(inputPassword);
         inputPassword.sendKeys(user.getPassword());
         loginButton.click();
+		return new BasePage(driver);
     }
 }

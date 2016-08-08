@@ -16,8 +16,7 @@ public class MailTest extends BasicTest {
     @Test(description = "input login, password, press login button, check that login was successful", groups = "login test")
     public void loginTest() {
         loginPage = PageFactory.initElements(driver, LoginPage.class);
-        loginPage.loginAs(user1);
-        basePage = PageFactory.initElements(driver, BasePage.class);
+        basePage = loginPage.loginAs(user1);
         basePage.checkLogin();
     }
 
@@ -37,16 +36,14 @@ public class MailTest extends BasicTest {
 
     @Test(description = "go to draft folder and check that email presents there", dependsOnMethods = "saveMail")
     public void checkDraftExists() {
-        composeMailPage.goToDraft();
+    	draftsPage = composeMailPage.goToDraft();
         handleAlert();
-        draftsPage = PageFactory.initElements(driver, DraftsPage.class);
         Assert.assertTrue(draftsPage.checkIfMailSaved(user2.getUsername() + "@mail.ru"), "Drafts folder is empty");
     }
 
     @Test(description = "open previously saved mail and check if content was saved properly", dependsOnMethods = "checkDraftExists")
     public void checkDraftContentTest() {
-        draftsPage.openSavedMail();
-        composeMailPage = PageFactory.initElements(driver, ComposeMailPage.class);
+    	composeMailPage =  draftsPage.openSavedMail();
         Assert.assertTrue(composeMailPage.checkMailContent(user2.getUsername() + "@mail.ru", subject, text), "Not all elements were found successfully.");
     }
 
@@ -57,17 +54,15 @@ public class MailTest extends BasicTest {
 
     @Test(description = "go to draft and make sure that email no longer presents at this folder", dependsOnMethods = "sendEmail")
     public void checkThatEmailWasSend() {
-        composeMailPage.goToSent();
+    	sentPage = composeMailPage.goToSent();
         handleAlert();
-        sentPage = PageFactory.initElements(driver, SentPage.class);
         Assert.assertTrue(sentPage.checkIfMailSaved(user2 + "@mail.ru"), "Sent folder is empty");
     }
 
     @Test(description = "go to \"sent\" folder and check if message presents there", dependsOnMethods = "sendEmail")
     public void checkEmailNotAtDrafts() {
-        sentPage.goToDraft();
+    	draftsPage = sentPage.goToDraft();
         handleAlert();
-        draftsPage = PageFactory.initElements(driver, DraftsPage.class);
         Assert.assertFalse(draftsPage.checkIfMailSaved(user2.getUsername() + "@mail.ru"), "Drafts folder is not empty");
     }
 }

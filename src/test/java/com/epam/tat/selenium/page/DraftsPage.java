@@ -8,12 +8,10 @@ public class DraftsPage extends BasePage {
     private static final String BODY = "//body";
     @FindBy(xpath = BODY)
     private WebElement page;
-    private WebDriver driver;
     private WebElement savedMail;
 
     public DraftsPage(WebDriver driver) {
         super(driver);
-        this.driver = driver;
     }
 
     public boolean checkIfMailSaved(String mailTo) {
@@ -26,8 +24,9 @@ public class DraftsPage extends BasePage {
         }
     }
 
-    public void openSavedMail() {
+    public ComposeMailPage openSavedMail() {
         savedMail.click();
+		return new ComposeMailPage(driver);
     }
 
     public void clearDrafts() {

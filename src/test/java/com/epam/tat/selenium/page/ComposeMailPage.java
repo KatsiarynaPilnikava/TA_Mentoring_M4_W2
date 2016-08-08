@@ -2,6 +2,7 @@ package com.epam.tat.selenium.page;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class ComposeMailPage extends BasePage {
     private static final String MAIL_SENDTO_XPATH = "//textarea[@class=\"js-input compose__labels__input\"]";
@@ -22,11 +23,9 @@ public class ComposeMailPage extends BasePage {
     private WebElement sendToCheck;
     @FindBy(xpath = MAIL_TEXT_CHECK_XPATH)
     private WebElement textCheck;
-    private WebDriver driver;
 
     public ComposeMailPage(WebDriver driver) {
         super(driver);
-        this.driver = driver;
     }
 
     public void composeMail(String to, String subject, String text) {

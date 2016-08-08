@@ -63,14 +63,12 @@ public class BasicTest {
 
 	@AfterTest
 	public void clearEmailAndDisposeDriver() {
-		basePage = PageFactory.initElements(driver, BasePage.class);
-		basePage.goToDraft();
+		basePage = loginPage.loginAs(user1);
+		draftsPage = basePage.goToDraft();
 		handleAlert();
-		draftsPage = PageFactory.initElements(driver, DraftsPage.class);
 		draftsPage.clearDrafts();
-		draftsPage.goToSent();
+		sentPage = draftsPage.goToSent();
 		handleAlert();
-		sentPage = PageFactory.initElements(driver, SentPage.class);
 		sentPage.clearSentMails();
 		sentPage.logout();
 		driver.close();
